@@ -70,8 +70,15 @@
     - Material Icon Theme
     - Powershell
     - Markdown Preview Enhanced
-
-##### 3 font
+    
+##### 3 Git
+    - go to its website and flow or just
+    `winget install --id Git.Git -e --source winget`
+    - set git account 
+    `git config --global user.name "Your Name"`
+    `git config --global user.email "your_email@example.com"`
+    
+##### 4 font
     [I use JetBrains Mono]
     go to its web can download
     go inside fonts\ttf\  to install
