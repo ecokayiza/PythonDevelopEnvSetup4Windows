@@ -70,13 +70,16 @@
     - Material Icon Theme
     - Powershell
     - Markdown Preview Enhanced
-    
+
 ##### 3 Git
     - go to its website and flow or just
     `winget install --id Git.Git -e --source winget`
     - set git account 
     `git config --global user.name "Your Name"`
     `git config --global user.email "your_email@example.com"`
+    - set git proxy like
+    `git config --global http.proxy http://127.0.0.1:7890`
+    `git config --global https.proxy http://127.0.0.1:7890`
     
 ##### 4 font
     [I use JetBrains Mono]
