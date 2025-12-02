@@ -58,10 +58,10 @@ if ($proxyEnable -eq 1) {
 ```
 
 ### 2 Vscode
-##### 1 安装
+##### 2.1 安装
     去 vscode 官网下载并安装，(勾选所有选项)
 
-##### 2 扩展
+##### 2.2 扩展
     - Git Extension Pack
     - Python Extension Pack
     [可选:]
@@ -71,7 +71,7 @@ if ($proxyEnable -eq 1) {
     - Powershell
     - Markdown Preview Enhanced
 
-##### 3 Git
+##### 2.3 Git
     - 去它的官网按照指引操作，或者直接
     `winget install --id Git.Git -e --source winget`
     - 设置 git 账户
@@ -81,7 +81,7 @@ if ($proxyEnable -eq 1) {
     `git config --global http.proxy http://127.0.0.1:7890`
     `git config --global https.proxy http://127.0.0.1:7890`
     
-##### 4 字体
+##### 2.4 字体
     [我使用 JetBrains Mono]
     去它的官网下载
     进入 fonts\ttf\ 安装
@@ -89,7 +89,7 @@ if ($proxyEnable -eq 1) {
     设置 vscode 配置，搜索 font 并编辑 `JetBrains Mono, monospace`
 
 ### 3 Python
-#### 1 Conda
+#### 3.1 Conda
     去它的官网 (miniconda) 并按照指引操作。
     安装时勾选所有选项。
     然后打开 powershell 并运行
@@ -108,7 +108,7 @@ pkgs_dirs:
 ```
     然后确保用户对你的 envs 文件夹有权限（你可以右键点击它打开属性并在安全选项卡中更改）
 
-#### 2 uv
+#### 3.2 uv
     [我建议你使用 uv 来安装包]
     去它的官网并按照指引操作，或者
     `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`

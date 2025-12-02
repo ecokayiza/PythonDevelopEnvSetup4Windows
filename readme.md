@@ -58,10 +58,10 @@ if ($proxyEnable -eq 1) {
 ```
 
 ### 2 Vscode
-##### 1 setup
+##### 2.1 setup
     go to vscode website and dowanload it then install, (check all options)
 
-##### 2 extensions
+##### 2.2 extensions
     - Git Extension Pack
     - Python Extension Pack
     [optional:]
@@ -71,7 +71,7 @@ if ($proxyEnable -eq 1) {
     - Powershell
     - Markdown Preview Enhanced
 
-##### 3 Git
+##### 2.3 Git
     - go to its website and flow or just
     `winget install --id Git.Git -e --source winget`
     - set git account 
@@ -81,7 +81,7 @@ if ($proxyEnable -eq 1) {
     `git config --global http.proxy http://127.0.0.1:7890`
     `git config --global https.proxy http://127.0.0.1:7890`
     
-##### 4 font
+##### 2.4 font
     [I use JetBrains Mono]
     go to its web can download
     go inside fonts\ttf\  to install
@@ -89,7 +89,7 @@ if ($proxyEnable -eq 1) {
     set vscode config , search font and edit `JetBrains Mono, monospace`
 
 ### 3 Python
-#### 1 Conda
+#### 3.1 Conda
     Go to its website (miniconda) and follow it.
     check all options while installing.
     then open powershell and run
@@ -108,7 +108,7 @@ pkgs_dirs:
 ```
     then make sure the user has permisson to your envs folder (you can right click it open Properties and change it in safety)
 
-#### 2 uv
+#### 3.2 uv
     [I suggest you use uv to install paks]
     go to its website and flow it or 
     `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
