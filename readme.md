@@ -11,51 +11,51 @@
     `winget search --id Microsoft.PowerShell`
     [else, go to microsoft powershell web page]
     download powshell package with .msi and install
+    [then you might need to update winget]
+    `winget upgrade Microsoft.AppInstaller` (use cmd and run as administrator)
+
 ##### 1.3 config your powershell
     `Install-Module PSReadLine -Force -AllowClobber` (add intellisence module)
     `New-Item –Path $Profile –Type File –Force` (to create config file)
     `notepad $Profile` (to edit it)
     then add those contents accordingly(like your port):
 
-    ```shell
-    # powershell settings
-    # intellisense
-    Set-PSReadLineKeyHandler -Key Tab -Function AcceptSuggestion
+```shell
+# powershell settings
+# intellisense
+Set-PSReadLineKeyHandler -Key Tab -Function AcceptSuggestion
 
-    # proxy
-    # manually
-    function proxy {
-        # 设置 HTTP 和 HTTPS 代理
-        $env:HTTP_PROXY = "http://127.0.0.1:7890"
-        $env:HTTPS_PROXY = "http://127.0.0.1:7890"
-        $env:ALL_PROXY = "socks5://127.0.0.1:7890" 
-        Write-Host " Proxy ON at 127.0.0.1:7890" -ForegroundColor Green
+# proxy
+# manually
+function proxy {
+    # 设置 HTTP 和 HTTPS 代理
+    $env:HTTP_PROXY = "http://127.0.0.1:7890"
+    $env:HTTPS_PROXY = "http://127.0.0.1:7890"
+    $env:ALL_PROXY = "socks5://127.0.0.1:7890" 
+    Write-Host " Proxy ON at 127.0.0.1:7890" -ForegroundColor Green
+}
+
+function unproxy {
+    $env:HTTP_PROXY = ""
+    $env:HTTPS_PROXY = ""
+    $env:ALL_PROXY = ""
+    Write-Host " Proxy OFF" -ForegroundColor Yellow
+}
+# follow your system proxy
+$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
+$proxyEnable = (Get-ItemProperty -Path $regPath).ProxyEnable
+$proxyServer = (Get-ItemProperty -Path $regPath).ProxyServer
+
+if ($proxyEnable -eq 1) {
+    if ($proxyServer -match "(\d+\.\d+\.\d+\.\d+:\d+)") {
+        $proxyAddress = "http://" + $matches[1]
+        $env:HTTP_PROXY = $proxyAddress
+        $env:HTTPS_PROXY = $proxyAddress
+        $env:ALL_PROXY = $proxyAddress
+        Write-Host " Proxy ON: $proxyAddress" -ForegroundColor Cyan
     }
-
-    function unproxy {
-        $env:HTTP_PROXY = ""
-        $env:HTTPS_PROXY = ""
-        $env:ALL_PROXY = ""
-        Write-Host " Proxy OFF" -ForegroundColor Yellow
-    }
-    # follow your system proxy
-    $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
-    $proxyEnable = (Get-ItemProperty -Path $regPath).ProxyEnable
-    $proxyServer = (Get-ItemProperty -Path $regPath).ProxyServer
-
-    if ($proxyEnable -eq 1) {
-        if ($proxyServer -match "(\d+\.\d+\.\d+\.\d+:\d+)") {
-            $proxyAddress = "http://" + $matches[1]
-            $env:HTTP_PROXY = $proxyAddress
-            $env:HTTPS_PROXY = $proxyAddress
-            $env:ALL_PROXY = $proxyAddress
-            Write-Host " 已开启代理: $proxyAddress" -ForegroundColor Cyan
-        }
-    }
-    ```
-
-    [then you might need to update winget]
-    `winget upgrade Microsoft.AppInstaller` (use cmd and run as administrator)
+}
+```
 
 ### 2 Vscode
 ##### 1 setup
@@ -98,11 +98,21 @@
         `conda env list` to check envs
         `conda activate <envname>` to activate certain env
         `conda install python=<version>` to update python in base env
+    [to modify the file path for new envs, edit `.condarc` under your conda folder]
+    add your path like:
+```
+envs_dirs:
+- C:\Coding\Envs\envs
+pkgs_dirs:
+- C:\Coding\Envs\pkgs
+```
+    then make sure the user has permisson to your envs folder (you can right click it open Properties and change it in safety)
+
 #### 2 uv
     [I suggest you use uv to install paks]
     go to its website and flow it or 
     `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
-    then use `uv pip install <module>` to install paks
+    then use `uv pip install <module>` to install paks 
     if there is erros says 'No virtual environment found'
     add this to your powershell config file:
     `$Env:UV_SYSTEM_PYTHON = 1`
