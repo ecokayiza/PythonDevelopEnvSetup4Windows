@@ -11,8 +11,9 @@
     `winget search --id Microsoft.PowerShell`
     [否则，去 microsoft powershell 网页]
     下载 .msi 格式的 powershell 安装包并安装
-    [然后你可能需要更新 winget]
-    `winget upgrade Microsoft.AppInstaller` (使用 cmd 并以管理员身份运行)
+    [然后你可能需要更新 winget](以管理员身份运行)
+    `Install-Module -Name Microsoft.WinGet.Client -Force -Repository PSGallery`
+    `Repair-WinGetPackageManager -AllUsers` 
 
 ##### 1.3 配置你的 powershell
     `Install-Module PSReadLine -Force -AllowClobber` (添加智能提示模块)

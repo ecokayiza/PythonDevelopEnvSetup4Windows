@@ -11,8 +11,9 @@
     `winget search --id Microsoft.PowerShell`
     [else, go to microsoft powershell web page]
     download powshell package with .msi and install
-    [then you might need to update winget]
-    `winget upgrade Microsoft.AppInstaller` (use cmd and run as administrator)
+    [then you might need to update winget]  (run as administrator)
+    `Install-Module -Name Microsoft.WinGet.Client -Force -Repository PSGallery`
+    `Repair-WinGetPackageManager -AllUsers`
 
 ##### 1.3 config your powershell
     `Install-Module PSReadLine -Force -AllowClobber` (add intellisence module)
